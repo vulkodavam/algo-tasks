@@ -6,6 +6,7 @@ if (isset($_POST['input']) && !empty($_POST['input'])) {
 ?>
     <form method="post" action="">
         <fieldset>
+            <label for="inputData">Input string: </label>
             <input type="text" name="input" id="inputData" value="<?php echo $post; ?>" />
             <input type="submit" name="submit" value="submit" />
         </fieldset>
