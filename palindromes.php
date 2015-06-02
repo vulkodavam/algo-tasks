@@ -1,19 +1,23 @@
+<?php
+$post = '';
+if (isset($_POST['input']) && !empty($_POST['input'])) {
+    $post = trim($_POST['input']);
+}
+?>
 <form method="post" action="">
     <fieldset>
-        <input type="text" name="input" id="inputData" value="<?php echo $_POST['input']; ?>" />
+        <input type="text" name="input" id="inputData" value="<?php echo $post; ?>" />
         <input type="submit" name="submit" value="submit" />
     </fieldset>
 </form>
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+if (preg_match('/[^a-z]/', $post) || strlen($post) > 1000 || strlen($post) < 1) {
+    echo "Invalid Input";
+} else {
+    $result = getRotations($post);
 
-$result = getRotations($_POST['input']);
-
-
-print_r("Result is: <br />" . $result);
-
-
+    print_r("Result is: <br />" . $result);
+}
 
 function getRotations($input)
 {
